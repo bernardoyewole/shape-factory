@@ -13,8 +13,15 @@ const STORAGE = 24;
 let array = [];
 let count = 0;
 
+function getSelectedText(element) {
+    if (element.selectedIndex !== -1) {
+        return element.options[element.selectedIndex].text;
+    }
+}
+
 function createShapeObj() {
-    let newShape = new Shape(shapeOption.value, colorOption.value);
+    let colorText = getSelectedText(colorOption);
+    let newShape = new Shape(shapeOption.value, colorText);
     array.push(newShape);
 }
 
@@ -43,7 +50,7 @@ onEvent('click', createBtn, () => {
     if (array.length < STORAGE && optionsValid()) {
         createShapeObj();
         createShape();
-    } else if (array.length === STORAGE){
+    } else if (array.length === STORAGE) {
         factoryInfo.innerText = `Storage is full!`
     }
 });
@@ -55,11 +62,17 @@ function getUnit(ele) {
     return unit;
 }
 
+function setInfo(unit, info) {
+    factoryInfo.innerText = `Unit ${unit}: ${info}`
+}
+
 onEvent('click', window, (event) => {
     if (gridContainer.hasChildNodes()) {
         gridContainer.childNodes.forEach(node => {
             if (node.contains(event.target)) {
                 let unit = getUnit(node.classList);
+                let info = array[unit - 1].getInfo();
+                setInfo(unit, info);
             }
         });
     }

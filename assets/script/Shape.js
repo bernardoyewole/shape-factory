@@ -12,7 +12,7 @@ export class Shape {
     }
 
     getInfo() {
-        return `${this._name} ${this._color}`;
+        return `${this._color} ${this._name}`;
     }
 
     get name() {
