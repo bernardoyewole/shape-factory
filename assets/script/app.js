@@ -41,17 +41,19 @@ function optionsValid() {
     if (shapeOption.value !== "" && colorOption.value !== "") {
         return true;
     } else {
-        factoryInfo.innerText = `Please, select a shape and a color`
+        factoryInfo.innerText = `Please, select a shape and a color`;
         return false;
     }
 }
 
 onEvent('click', createBtn, () => {
+    clickClear();
     if (array.length < STORAGE && optionsValid()) {
         createShapeObj();
         createShape();
     } else if (array.length === STORAGE) {
-        factoryInfo.innerText = `Storage is full!`
+        clear();
+        factoryInfo.innerText = `Storage is full!`;
     }
 });
 
@@ -63,7 +65,7 @@ function getUnit(ele) {
 }
 
 function setInfo(unit, info) {
-    factoryInfo.innerText = `Unit ${unit}: ${info}`
+    factoryInfo.innerText = `Unit ${unit}: ${info}`;
 }
 
 onEvent('click', window, (event) => {
@@ -77,3 +79,14 @@ onEvent('click', window, (event) => {
         });
     }
 });
+
+function clear() {
+    createBtn.classList.add('clear');
+    createBtn.value = 'Clear';
+}
+
+function clickClear() {
+    if (createBtn.value == 'Clear') {
+        location.reload();
+    }
+}

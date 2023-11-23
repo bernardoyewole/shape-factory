@@ -60,6 +60,7 @@ input {
     margin-left: 15px;
     cursor: pointer;
     transition: all 0.3s ease-out;
+    width: 90px;
 }
 
 input:hover {
@@ -77,6 +78,10 @@ input:hover {
     transform: rotateX(150deg);
 }
 
+.grid-container div {
+    cursor: pointer;
+}
+
 .factory-info {
     margin-top: 10px;
     color: #fff;
@@ -86,4 +91,12 @@ input:hover {
 
 .circle {
     border-radius: 50%;
+}
+
+.clear {
+    background-color: #CC231E;
+}
+
+.clear:hover {
+    background-color: #b3201b;
 }
