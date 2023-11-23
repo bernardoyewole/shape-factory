@@ -70,7 +70,7 @@ input:hover {
 .grid-container {
     display: grid;
     grid-template-columns: repeat(6, 80px); 
-    grid-template-rows: repeat(4, 80px);
+    grid-template-rows: repeat(4, 92.4px);
     gap: 10px;
     background-color: #272A31;
     border-radius: 4px;
@@ -83,9 +83,7 @@ input:hover {
 }
 
 .factory-info {
-    margin-top: 10px;
     color: #fff;
-    height: 24px;
     line-height: 0;
 }
 
