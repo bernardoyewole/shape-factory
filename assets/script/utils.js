@@ -13,9 +13,14 @@ function selectAll(selector, parent = document) {
     return [...parent.querySelectorAll(selector)];
 }
 
+// Create an html element
+function create(element, parent = document) {
+    return parent.createElement(element);
+  }
+
 // Print
 function print(arg) {
     console.log(arg);
 }
 
-export { onEvent, select, selectAll, print };
+export { onEvent, select, selectAll, create, print };

@@ -1,4 +1,66 @@
 'use strict';
 
-import { onEvent, select, selectAll } from "./utils.js";
+import { onEvent, select, selectAll, create, print } from "./utils.js";
 
+import author, { Shape } from "./Shape.js";
+
+const createBtn = select('.create');
+const shapeOption = select('.shape');
+const colorOption = select('.color');
+const gridContainer = select('.grid-container');
+const factoryInfo = select('.factory-info');
+const STORAGE = 24;
+let array = [];
+let count = 0;
+
+function createShapeObj() {
+    let newShape = new Shape(shapeOption.value, colorOption.value);
+    array.push(newShape);
+}
+
+function createShape() {
+    count++;
+
+    let newShape = create('div');
+    if (shapeOption.value == "circle") {
+        newShape.classList.add('circle');
+    }
+    newShape.style.backgroundColor = `#${colorOption.value}`
+    newShape.classList.add(`item-${count}`)
+    gridContainer.appendChild(newShape);
+}
+
+function optionsValid() {
+    if (shapeOption.value !== "" && colorOption.value !== "") {
+        return true;
+    } else {
+        factoryInfo.innerText = `Please, select a shape and a color`
+        return false;
+    }
+}
+
+onEvent('click', createBtn, () => {
+    if (array.length < STORAGE && optionsValid()) {
+        createShapeObj();
+        createShape();
+    } else if (array.length === STORAGE){
+        factoryInfo.innerText = `Storage is full!`
+    }
+});
+
+function getUnit(ele) {
+    let className = ele[ele.length - 1];
+    let classArr = className.split('-');
+    let unit = classArr[classArr.length - 1];
+    return unit;
+}
+
+onEvent('click', window, (event) => {
+    if (gridContainer.hasChildNodes()) {
+        gridContainer.childNodes.forEach(node => {
+            if (node.contains(event.target)) {
+                let unit = getUnit(node.classList);
+            }
+        });
+    }
+});
