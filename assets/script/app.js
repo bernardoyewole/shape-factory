@@ -32,8 +32,8 @@ function createShape() {
     if (shapeOption.value == "circle") {
         newShape.classList.add('circle');
     }
-    newShape.style.backgroundColor = `#${colorOption.value}`
-    newShape.classList.add(`item-${count}`)
+    newShape.style.backgroundColor = `#${colorOption.value}`;
+    newShape.classList.add(`item-${count}`);
     gridContainer.appendChild(newShape);
 }
 

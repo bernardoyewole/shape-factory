@@ -39,6 +39,7 @@ select {
     height: 46px;
     padding: 0 12px;
     border-radius: 4px;
+    cursor: pointer;
 }
 
 select + select {
